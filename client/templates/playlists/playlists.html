@@ -1,7 +1,7 @@
 <template name="playlists">
     <h2>{{ greeting }} {{ user_name }}</h2>
 
-    {{#if loaded}}
+    {{#if $.Session.get 'loadedPlaylists' }}
     <h3>You have {{ playlistCount }} playlists. Select a playlist you want to check for duplicates.</h3>
       <ul class="list-group">
         {{# each playlists }}

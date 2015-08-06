@@ -1,8 +1,8 @@
 <template name="duplicates">
 
 <div class="duplicates-title"><h2>Duplicates found in {{ name }}:</h2></div>
-<a href="/" class="btn btn-default right-top">Back to playlists</a>
-    {{#if loaded}}
+<div class="btn btn-default right-top home">Back to playlists</div>
+    {{#if $.Session.get 'loadedDuplicates' }}
     <ul class="list-group">
       {{# each duplicates }}
         <li class="list-group-item" id="{{id}}">

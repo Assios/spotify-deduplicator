@@ -1,6 +1,6 @@
 Template.duplicates.onRendered(function() {
 
-    Session.set('loaded', false);
+    Session.set('loadedDuplicates', false);
 
     var playlist_id = Router.current().params['_id']
 
@@ -8,7 +8,7 @@ Template.duplicates.onRendered(function() {
         console.log(response);
 
         Session.set('duplicateTracks', response);
-        Session.set('loaded', true);
+        Session.set('loadedDuplicates', true);
     });
 
 });
@@ -26,6 +26,11 @@ Template.duplicates.events({
 
         // Remove duplicate from list after it's removed from Spotify
         $('#' + track_id).remove();
+    },
+
+    'click .home': function(e) {
+        Session.set('loadedPlaylists', true);
+        Router.go('/');
     }
 });
 
@@ -35,12 +40,8 @@ Template.duplicates.helpers({
         return Session.get('duplicateTracks');
     },
 
-    loaded: function() {
-        return Session.get('loaded');
-    },
-
-    removedItem: function() {
-        return this.uri;
+    loadedDuplicates: function() {
+        return Session.get('loadedDuplicates');
     }
 
 });
