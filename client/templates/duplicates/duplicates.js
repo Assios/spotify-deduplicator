@@ -16,13 +16,16 @@ Template.duplicates.onRendered(function() {
 Template.duplicates.events({
     'click .remove-dup': function (e) {
         var track_uri = e.currentTarget.id;
+        var track_id = e.currentTarget.id.split(':')[2];
         var playlist_id = e.currentTarget.baseURI.split('/')[4];
-        console.log(track_uri);
-        console.log(playlist_id);
 
         Meteor.call('removeDuplicates', playlist_id, track_uri, function(err, response) {
             console.log(response);
+            console.log(error);
         });
+
+        // Remove duplicate from list after it's removed from Spotify
+        $('#' + track_id).remove();
     }
 });
 
@@ -34,6 +37,10 @@ Template.duplicates.helpers({
 
     loaded: function() {
         return Session.get('loaded');
+    },
+
+    removedItem: function() {
+        return this.uri;
     }
 
 });
