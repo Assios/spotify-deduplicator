@@ -22,37 +22,37 @@ Meteor.methods({
         return response;
     },
 
-    removeTrackFromPlaylist: function(playlist_id) {
+    removeTrackFromPlaylist: function(playlist_id, track_uri) {
         var spotifyApi = new SpotifyWebApi();
 
         // Remove all occurrences of track
         var response = spotifyApi.removeTracksFromPlaylist(Meteor.user().services.spotify.id, playlist_id,
               [{
-                  'uri' : 'spotify:track:2uiI1F8xGwqWFN6CmvrsFY'
+                  'uri' : track_uri
               }], {});
 
         return response;
     },
 
-    addTrackToPlaylist: function(playlist_id) {
+    addTrackToPlaylist: function(playlist_id, track_uri) {
         var spotifyApi = new SpotifyWebApi();
 
-        var response = spotifyApi.addTracksToPlaylist(Meteor.user().services.spotify.id, playlist_id, ["spotify:track:4iV5W9uYEdYUVa79Axb7Rh"])
+        var response = spotifyApi.addTracksToPlaylist(Meteor.user().services.spotify.id, playlist_id, [track_uri])
 
         return response;
     },
 
-    removeDuplicates: function(playlist_id) {
+    removeDuplicates: function(playlist_id, track_uri) {
         var spotifyApi = new SpotifyWebApi();
 
         // Remove all occurrences of track
         var remove = spotifyApi.removeTracksFromPlaylist(Meteor.user().services.spotify.id, playlist_id,
               [{
-                  'uri' : 'spotify:track:2uiI1F8xGwqWFN6CmvrsFY'
+                  'uri' : track_uri
               }], {});
 
         // Add once after removing all
-        var add = spotifyApi.addTracksToPlaylist(Meteor.user().services.spotify.id, playlist_id, ["spotify:track:2uiI1F8xGwqWFN6CmvrsFY"]);
+        var add = spotifyApi.addTracksToPlaylist(Meteor.user().services.spotify.id, playlist_id, [track_uri]);
 
         return add;
     },
