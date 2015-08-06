@@ -1,7 +1,5 @@
 Template.duplicates.onRendered(function() {
 
-    Session.set('loadedDuplicates', false);
-
     var playlist_id = Router.current().params['_id']
 
     Meteor.call('getDuplicateTracksFromPlaylist', playlist_id, function(err, response) {
@@ -10,8 +8,8 @@ Template.duplicates.onRendered(function() {
         Session.set('duplicateTracks', response);
         Session.set('loadedDuplicates', true);
     });
-
 });
+
 
 Template.duplicates.events({
     'click .remove-dup': function (e) {
@@ -19,13 +17,20 @@ Template.duplicates.events({
         var track_id = e.currentTarget.id.split(':')[2];
         var playlist_id = e.currentTarget.baseURI.split('/')[4];
 
+        console.log(track_uri);
+        console.log(playlist_id);
+
         Meteor.call('removeDuplicates', playlist_id, track_uri, function(err, response) {
-            console.log(response);
-            console.log(error);
+
         });
 
-        // Remove duplicate from list after it's removed from Spotify
-        $('#' + track_id).remove();
+        // Temporary hack, can't
+        // remove more than 1 duplicate without
+        // completely reloading
+        window.location.reload()
+
+        //$('#' + track_id).remove();
+        //Session.set('duplicateTracks', $.grep(Session.get('duplicateTracks'), function(e) { return e.uri != track_uri }));
     },
 
     'click .home': function(e) {

@@ -2,9 +2,9 @@
 
 <div class="duplicates-title"><h2>Duplicates found in {{ name }}:</h2></div>
 <div class="btn btn-default right-top home">Back to playlists</div>
-    {{#if $.Session.get 'loadedDuplicates' }}
+    {{#if loadedDuplicates }}
     <ul class="list-group">
-      {{# each duplicates }}
+      {{# each $.Session.get 'duplicateTracks' }}
         <li class="list-group-item" id="{{id}}">
               <img src="{{ album.images.[0].url }}" height="48px" width="48px">
               <b class="track-list artist">{{artists.[0].name}} – </b>

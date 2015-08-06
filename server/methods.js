@@ -51,6 +51,13 @@ Meteor.methods({
                   'uri' : track_uri
               }], {});
 
+        if (checkTokenRefreshed(remove, spotifyApi)) {
+            remove = spotifyApi.removeTracksFromPlaylist(Meteor.user().services.spotify.id, playlist_id,
+              [{
+                  'uri' : track_uri
+              }], {});
+        }
+
         // Add once after removing all
         var add = spotifyApi.addTracksToPlaylist(Meteor.user().services.spotify.id, playlist_id, [track_uri]);
 
