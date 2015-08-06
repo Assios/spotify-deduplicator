@@ -1,0 +1,16 @@
+<template name="duplicates">
+
+<h2>Duplicates found in {{ name }}:</h2>
+<a href="/" class="btn btn-default right-top">Back to playlists</a>
+    <ul class="list-group">
+      {{# each duplicates }}
+        <li class="list-group-item">
+              <img src="{{ album.images.[0].url }}" height="48px" width="48px">
+              <b class="track-list artist">{{artists.[0].name}} – </b>
+              <a href="{{preview_url}}" target="_blank"><b class="track-list">{{ name }}</b></a>
+        </li>
+      {{else}}
+       <h2>None!</h2>
+      {{/each}}
+    </ul>
+</template>
