@@ -13,13 +13,4 @@ Template.duplicates.helpers({
         return Session.get('duplicateTracks');
     },
 
-    play: function() {
-        var audio = document.getElementById("audio");
-        audio.play();
-    }
 });
-
-function play(){
-       var audio = document.getElementById("audio");
-       audio.play();
-}

@@ -70,7 +70,7 @@ Meteor.methods({
             });
         }
 
-        uris = uniqify(uris);
+        uris = uniquify(uris);
 
         ids = [];
 
@@ -88,7 +88,7 @@ Meteor.methods({
     }
 });
 
-var uniqify = function(origArr) {
+var uniquify = function(origArr) {
     var newArr = [],
         origLen = origArr.length,
         found, x, y;

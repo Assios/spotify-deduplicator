@@ -7,7 +7,10 @@
         <li class="list-group-item">
               <img src="{{ album.images.[0].url }}" height="48px" width="48px">
               <b class="track-list artist">{{artists.[0].name}} – </b>
-              <a href="{{preview_url}}" target="_blank"><b class="track-list">{{ name }}</b></a>
+              <b class="track-list">{{ name }}</b>
+                <audio controls class="right">
+                  <source src="{{preview_url}}" type="audio/mpeg">
+                </audio>          
         </li>
       {{else}}
        <h2>None!</h2>
