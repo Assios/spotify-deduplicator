@@ -6,12 +6,13 @@ body {
 }
 
 .main-box {
-    width: 60%;
+    width: 70%;
     margin-top: 50px;
     margin-left: auto;
     margin-right: auto;
     border:3px solid #EFF2FB;
     padding: 10px;
+    padding-top: 50px;
     background: rgba(250, 250, 250, 0.9);
 }
 
@@ -32,4 +33,21 @@ body {
 
 .artist {
     margin-left: 5px;
+}
+
+@media screen and (max-width: 1024px) {
+    audio {
+        display: none !important;
+    }
+}
+
+.duplicates-title {
+    margin-bottom: 20px;
+}
+
+@media screen and (max-width: 700px) {
+    .duplicates-title {
+        display: none !important;
+        height: 500px;
+    }
 }
