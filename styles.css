@@ -6,6 +6,7 @@ body {
 }
 
 .main-box {
+    min-height: 500px;
     width: 70%;
     margin-top: 50px;
     margin-left: auto;
@@ -35,14 +36,22 @@ body {
     margin-left: 5px;
 }
 
+.duplicates-title {
+    margin-bottom: 20px;
+}
+
+.nopreview {
+    font-size: 15px;
+}
+
 @media screen and (max-width: 1024px) {
     audio {
         display: none !important;
     }
-}
 
-.duplicates-title {
-    margin-bottom: 20px;
+    .nopreview {
+        display: none !important;
+    }
 }
 
 @media screen and (max-width: 700px) {

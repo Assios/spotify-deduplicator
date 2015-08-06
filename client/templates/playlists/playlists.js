@@ -1,5 +1,7 @@
 Template.playlists.onRendered(function() {
 
+    Session.set('loaded', false);
+
     Meteor.call('randomGreeting', function(err, response) {
         Session.set('greeting', response);
     });
@@ -16,6 +18,7 @@ Template.playlists.onRendered(function() {
 
         Session.set('playlistCount', own_playlists.length);
         Session.set('playlists', own_playlists);
+        Session.set('loaded', true);
     });
 });
 
@@ -40,5 +43,9 @@ Template.playlists.helpers({
 
     greeting: function() {
         return Session.get('greeting');
+    },
+
+    loaded: function() {
+        return Session.get('loaded');
     }
 });

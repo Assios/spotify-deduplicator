@@ -2,18 +2,29 @@
 
 <div class="duplicates-title"><h2>Duplicates found in {{ name }}:</h2></div>
 <a href="/" class="btn btn-default right-top">Back to playlists</a>
+    {{#if loaded}}
     <ul class="list-group">
       {{# each duplicates }}
         <li class="list-group-item">
               <img src="{{ album.images.[0].url }}" height="48px" width="48px">
               <b class="track-list artist">{{artists.[0].name}} – </b>
               <b class="track-list">{{ name }}</b>
+
+              {{#if preview_url}}
                 <audio controls class="right">
                   <source src="{{preview_url}}" type="audio/mpeg">
-                </audio>          
+                </audio>
+              {{else}}
+              <div class="right nopreview">
+                No preview.
+              </div>
+              {{/if}}
         </li>
       {{else}}
        <h2>None!</h2>
       {{/each}}
     </ul>
+    {{else}}
+      {{> spinner }}
+    {{/if}}
 </template>
