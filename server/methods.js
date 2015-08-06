@@ -22,6 +22,40 @@ Meteor.methods({
         return response;
     },
 
+    removeTrackFromPlaylist: function(playlist_id) {
+        var spotifyApi = new SpotifyWebApi();
+
+        // Remove all occurrences of track
+        var response = spotifyApi.removeTracksFromPlaylist(Meteor.user().services.spotify.id, playlist_id,
+              [{
+                  'uri' : 'spotify:track:2uiI1F8xGwqWFN6CmvrsFY'
+              }], {});
+
+        return response;
+    },
+
+    addTrackToPlaylist: function(playlist_id) {
+        var spotifyApi = new SpotifyWebApi();
+
+        var response = spotifyApi.addTracksToPlaylist(Meteor.user().services.spotify.id, playlist_id, ["spotify:track:4iV5W9uYEdYUVa79Axb7Rh"])
+
+        return response;
+    },
+
+    removeDuplicates: function(playlist_id) {
+        var spotifyApi = new SpotifyWebApi();
+
+        // Remove all occurrences of track
+        var remove = spotifyApi.removeTracksFromPlaylist(Meteor.user().services.spotify.id, playlist_id,
+              [{
+                  'uri' : 'spotify:track:2uiI1F8xGwqWFN6CmvrsFY'
+              }], {});
+
+        // Add once after removing all
+        var add = spotifyApi.addTracksToPlaylist(Meteor.user().services.spotify.id, playlist_id, ["spotify:track:2uiI1F8xGwqWFN6CmvrsFY"]);
+
+        return add;
+    },
 
     getDuplicateTracksFromPlaylist: function(playlist_id) {
         var spotifyApi = new SpotifyWebApi();

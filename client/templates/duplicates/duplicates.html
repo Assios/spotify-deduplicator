@@ -9,7 +9,7 @@
               <img src="{{ album.images.[0].url }}" height="48px" width="48px">
               <b class="track-list artist">{{artists.[0].name}} – </b>
               <b class="track-list">{{ name }}</b>
-
+              <div class="btn btn-default" id="{{id}}">Remove dup</div>
               {{#if preview_url}}
                 <audio controls class="right">
                   <source src="{{preview_url}}" type="audio/mpeg">
