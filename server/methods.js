@@ -3,12 +3,12 @@ Meteor.methods({
     getPlaylists: function() {
         var spotifyApi = new SpotifyWebApi();
         var response = spotifyApi.getUserPlaylists(Meteor.user().services.spotify.id, {
-            'limit': 50
+            'limit': 100
         });
 
         if (checkTokenRefreshed(response, spotifyApi)) {
             response = spotifyApi.getUserPlaylists(Meteor.user().services.spotify.id, {
-                'limit': 50
+                'limit': 100
             });
         }
 
