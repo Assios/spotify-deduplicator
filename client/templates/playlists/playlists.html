@@ -1,15 +1,15 @@
 <template name="playlists">
-    <h2>{{ greeting }} {{ user_name }}</h2>
+    <div class="greeting">{{ greeting }} {{ user_name }}</div>
 
     {{#if $.Session.get 'loadedPlaylists' }}
-    <h3>You have {{ playlistCount }} playlists. Select a playlist you want to check for duplicates.</h3>
+    <div class="info">You have {{ playlistCount }} playlists. Select a playlist you want to check for duplicates.</div>
       <ul class="list-group">
         {{# each playlists }}
           <li class="list-group-item">
                 <!-- <img src="{{ images.[0].url }}" height="48px" width="48px"> -->
                 <i class="fa fa-music"></i>
                 <b>{{ name }}</b>   :     {{ tracks.total }} tracks.
-                <a class="btn btn-default" href="{{pathFor 'duplicates' _id=this.id name=this.name}}">Find duplicates in {{name}}</a>
+                <a class="btn btn-default btn-find-duplicates" href="{{pathFor 'duplicates' _id=this.id name=this.name}}">Find duplicates in {{name}}</a>
           </li>
         {{/each}}
       </ul>
