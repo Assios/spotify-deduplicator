@@ -1,5 +1,7 @@
 Template.duplicates.onRendered(function() {
 
+    Session.set('loadedDuplicates', false);
+
     var playlist_id = Router.current().params['_id']
 
     Meteor.call('getDuplicateTracksFromPlaylist', playlist_id, function(err, response) {
