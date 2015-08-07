@@ -17,27 +17,12 @@ Meteor.methods({
 
     getTracks: function(ids) {
         var spotifyApi = new SpotifyWebApi();
+
         var response = spotifyApi.getTracks(ids);
 
-        return response;
-    },
-
-    removeTrackFromPlaylist: function(playlist_id, track_uri) {
-        var spotifyApi = new SpotifyWebApi();
-
-        // Remove all occurrences of track
-        var response = spotifyApi.removeTracksFromPlaylist(Meteor.user().services.spotify.id, playlist_id,
-              [{
-                  'uri' : track_uri
-              }], {});
-
-        return response;
-    },
-
-    addTrackToPlaylist: function(playlist_id, track_uri) {
-        var spotifyApi = new SpotifyWebApi();
-
-        var response = spotifyApi.addTracksToPlaylist(Meteor.user().services.spotify.id, playlist_id, [track_uri])
+        if (checkTokenRefreshed(response, spotifyApi)) {
+            response = spotifyApi.getTracks(id);
+        }
 
         return response;
     },
@@ -70,10 +55,17 @@ Meteor.methods({
         var offset = 0;
         var delta = 100;
         var number_of_songs = spotifyApi.getPlaylistTracks(Meteor.user().services.spotify.id, playlist_id, {
-            'limit': 100,
-            'offset': 0,
+            'limit': 1,
             'fields': 'total'
         }).data.body.total;
+
+        if (checkTokenRefreshed(number_of_songs, spotifyApi)) {
+            var number_of_songs = spotifyApi.getPlaylistTracks(Meteor.user().services.spotify.id, playlist_id, {
+                'limit': 1,
+                'fields': 'total'
+            }).data.body.total;
+        }
+
         var response = [];
 
         do {
@@ -100,14 +92,6 @@ Meteor.methods({
             if (sorted[i + 1] == sorted[i]) {
                 uris.push(sorted[i]);
             }
-        }
-
-        if (checkTokenRefreshed(response, spotifyApi)) {
-            response = spotifyApi.getPlaylistTracks(Meteor.user().services.spotify.id, playlist_id, {
-                'limit': 100,
-                'offset': 100,
-                'fields': 'items.track.uri'
-            });
         }
 
         uris = uniquify(uris);

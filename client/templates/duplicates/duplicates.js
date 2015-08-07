@@ -5,7 +5,6 @@ Template.duplicates.onRendered(function() {
     var playlist_id = Router.current().params['_id']
 
     Meteor.call('getDuplicateTracksFromPlaylist', playlist_id, function(err, response) {
-        console.log(response);
 
         Session.set('duplicateTracks', response);
         Session.set('loadedDuplicates', true);
@@ -18,9 +17,6 @@ Template.duplicates.events({
         var track_uri = e.currentTarget.id;
         var track_id = e.currentTarget.id.split(':')[2];
         var playlist_id = e.currentTarget.baseURI.split('/')[4];
-
-        console.log(track_uri);
-        console.log(playlist_id);
 
         Meteor.call('removeDuplicates', playlist_id, track_uri, function(err, response) {
 
