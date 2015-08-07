@@ -71,7 +71,7 @@ Meteor.methods({
         var delta = 100;
         var number_of_songs = spotifyApi.getPlaylistTracks(Meteor.user().services.spotify.id, playlist_id, {
             'limit': 100,
-            'offset': 100,
+            'offset': 0,
             'fields': 'total'
         }).data.body.total;
         var response = [];
@@ -88,13 +88,12 @@ Meteor.methods({
             }
 
             response.push.apply(response, array);
-            offset += delta;
-            number_of_songs -= 500;
-        } while (number_of_songs > 100);
 
+            offset += delta;
+            number_of_songs -= delta;
+        } while (number_of_songs > 0);
 
         var sorted = response.sort();
-
         var uris = [];
 
         for (var i = 0; i < sorted.length - 1; i++) {
