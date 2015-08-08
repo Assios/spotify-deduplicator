@@ -7,8 +7,7 @@
       {{# each $.Session.get 'duplicateTracks' }}
         <li class="list-group-item" id="{{id}}">
               <img src="{{ album.images.[0].url }}" height="48px" width="48px">
-              <b class="track-list artist">{{artists.[0].name}} – </b>
-              <b class="track-list">{{ name }}</b>
+              <b class="track-list" title="{{artists.[0].name}} – {{name}}">{{ format_track artists.[0].name name 50 }}</b>
               <div class="btn btn-default remove-dup" id="{{uri}}">Remove dup</div>
               {{#if preview_url}}
                 <audio controls class="right">

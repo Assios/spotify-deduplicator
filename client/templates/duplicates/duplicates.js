@@ -45,6 +45,13 @@ Template.duplicates.helpers({
 
     loadedDuplicates: function() {
         return Session.get('loadedDuplicates');
+    },
+
+    format_track: function(artist, title, max_length) {
+        if (artist.length + title.length <= max_length)
+            return artist + " – " + title
+        else
+            return artist + " – " + title.substring(0, max_length-artist.length-3) + "..."
     }
 
 });
