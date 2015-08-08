@@ -7,7 +7,7 @@ Spotify Deduplicator finds duplicate tracks in your Spotify playlists and lets y
 2. Clone the repo: ```git clone https://github.com/Assios/Spotify-Deduplicator.git```
 3. Go to the [Spotify Developer page](https://developer.spotify.com/my-applications) and create an app.
 4. Add a redirect URI. For this example, use ```http://localhost:3000/_oauth/spotify?close```
-5. Create a file called ```config.js``` in the ```server``` directory and paste the following into it, using the client ID and secret from the app page you made:
+5. Create a file called ```config.js``` in the ```server``` directory and paste the following into it, using the client ID and secret from the app you made:
 ```
 ServiceConfiguration.configurations.update({
     "service": "spotify"

@@ -6,10 +6,8 @@
       <ul class="list-group">
         {{# each playlists }}
           <li class="list-group-item">
-                <!-- <img src="{{ images.[0].url }}" height="48px" width="48px"> -->
-                <i class="fa fa-music"></i>
-                <b>{{ name }}</b>   :     {{ tracks.total }} tracks.
-                <a class="btn btn-default btn-find-duplicates" href="{{pathFor 'duplicates' _id=this.id name=this.name}}">Find duplicates in {{name}}</a>
+                <div class="center-btn"><a class="btn btn-default btn-find-duplicates" href="{{pathFor 'duplicates' _id=this.id name=this.name}}">{{name}}</a></div>
+                <div class="total-tracks">Total tracks: {{tracks.total}}</div>
           </li>
         {{/each}}
       </ul>

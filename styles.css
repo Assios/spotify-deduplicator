@@ -65,7 +65,17 @@ body {
 }
 
 .btn-find-duplicates {
-    text-align: right;
+    text-align: center;
+}
+
+.center-btn {
+    text-align: center;
+}
+
+.total-tracks {
+    font-size: 10px;
+    font-weight: bold;
+    text-align: center;
 }
 
 @media screen and (max-width: 1024px) {
