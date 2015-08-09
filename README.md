@@ -27,4 +27,8 @@ ServiceConfiguration.configurations.update({
 
 Spotify Deduplicator is released under [The MIT License](http://opensource.org/licenses/MIT)
 
+## TODO
+
+* Add matching on title and artist as well as URI (to also show identical tracks on different albums).
+* Add possibility to list duplicates across playlists.
 
