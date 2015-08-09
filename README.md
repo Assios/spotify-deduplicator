@@ -22,3 +22,9 @@ ServiceConfiguration.configurations.update({
 ```
 
 6. Run ```meteor run``` and the app will be running on port 3000.
+
+## License
+
+Spotify Deduplicator is released under [The MIT License](http://opensource.org/licenses/MIT)
+
+
